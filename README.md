@@ -1,1 +1,2 @@
-# GUIShopPlus
+# GUIShopMinus
+FOSS alternitive to GUIShopPlus 
