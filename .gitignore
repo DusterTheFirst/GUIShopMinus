@@ -1,7 +1,12 @@
+# Local build scripts
+*.bat
+
+# Generated files
+target
+dependency-reduced-pom.xml
+
 # Compiled class file
 *.class
-target/
-dependency-reduced-pom.xml
 
 # Log file
 *.log
