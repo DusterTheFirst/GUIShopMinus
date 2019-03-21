@@ -11,8 +11,9 @@ deploy:
   api_key: "$GHTOKEN"
   file: target/GuiShopMinus.jar
   skip_cleanup: true
-  on:
-    tags: true
+  draft: true
+  # on:
+  #   tags: true
 env:
   global:
     secure: WJ1197uiURrb0d+SRsBTjvkQIbBZPsrnxkLxa2PBs76LgYx+LoMmiZC5ZQ1Cd/wKqmn3YQt4QJCU3jSR3TViPeh7j6GpwIwY+yb8lHtucfB4Pb00fCi3MrSZrNO0grvCKETDFVZfngzaVFh6QW7jSekrBLfqcX4Ydh7n6mZpI5iQZ+hqu6zcKPDgwVuwD+SDvfQpwbvybgeEUHWmqLtIeGr7XUqHpj6zUT7BNWssCmBmtcSfLRzGn2O6tnWC7ef+HH9X6PSEjVQQteOMO7b304se1EkX5EET3deq3BC9S2IjnajNC6toa7zmy9wTZt/R20eA2Kj8Fbm2kT5chrhZerkQ98QK0zH19ZMqroyYvN7r7FLthK8wbzIAeW17wJTqUrUtvjnUGU5tdkY7+V5N9dSF964WGKe9qcj1NpUZRnMU2GCICsU/PEfJEEdrlRgxTogSqsyHyte29rIita8kBq13oGpxpJ30qty7u4pDWvLFcIKQs/HUrLbdoMMgyQyPjmbvHJVr6uB9kstUW8JCioiGltzsdtrkPrbEjK4vuWaQopfZR/2Fy6OL0zwqBhnzZfoDsYWmRaeTjY5jDJX9VVsgpuDwtjFSoUX8wrDPCdeewxEwquUCKeISX2SdzjTRogrFXvRJXYE7s4Sb433PIpzoKIRmBf/HlHyetGoYZmA=
