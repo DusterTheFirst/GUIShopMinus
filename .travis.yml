@@ -1,4 +1,5 @@
 language: java
+if: branch =! tag
 jdk:
   - oraclejdk8
   - oraclejdk9
@@ -22,7 +23,6 @@ jobs:
           skip_cleanup: true
           prerelease: true 
           name: Snapshot $TRAVIS_TAG
-          body: $TRAVIS_COMMIT_MESSAGE
           on:
             repo: DusterTheFirst/GUIShopMinus
             branch: master
