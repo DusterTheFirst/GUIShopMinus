@@ -1,5 +1,5 @@
 language: java
-if: branch =! tag
+if: branch = master OR branch = stable
 jdk:
   - oraclejdk8
   - oraclejdk9
