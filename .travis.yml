@@ -20,6 +20,9 @@ jobs:
             secure: r+qlvvCNqTXZYZyViN8X60/EqNr53vkiWl6DjBkIiTBqXV4lmaHkTDjoomtplzn7BidHwASEdSHUVPNpP1uRvpKR6/UZDhyJAueuerS18Fyl82hbNCBg4HT+3mcaFprQQddR++8fNccVdg0zgTFVWVwDJ9IctazeSMveeUYnEgpuwDV27aETaYNqjnISx6SyPSLBe36weu0ubp2xkpZLBVz10ZmGRBfDWL13ofO0jIrNPvnRPNXWQmsuK4d0mTTOsqbb5ZjtSBQoYHW7+jElMgRaJzDyQShcroImQdHONxbXkkO60VuwNWv7qun0wnat467RGhK541fj++EWk6CLphV31aEb1DBuyaOYOmyh1L1MmQJPekGaD9ZE+PWO9c1H5vyFd9Jl/OLz4PNF2YmfeGKJc+oGJG+WNA+5KM1zpywWztg5YT8SsTNrY2/X48lkxVtGDW1O9n5kpbkxbmEDR8Ek0gzA7q1rzMTAU/PGa3tiFOhtjUCzWXPqidk74F/3kqKybEDNdbje44J85WJjqK0T4wqblqucJimuAxR7hrkKOVw24q+g9tDcByz6m85CS8ECj4Uui6i3oP6trPBM5uCmF0p3TF2WDKH0xypPtrK+zrJsYKsWEFSsW1RxW6fTD59OUiQBREoOn6CzKJ+fImbYT7pPP7tzMbRnrVQtuoE=
           file: target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar
           skip_cleanup: true
+          prerelease: true 
+          name: Snapshot $TRAVIS_TAG
+          body: $TRAVIS_COMMIT_MESSAGE
           on:
             repo: DusterTheFirst/GUIShopMinus
             branch: master
