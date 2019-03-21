@@ -16,9 +16,9 @@ import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-import com.dusterthefirst.guishopminus.commands.ShowInv;
+import com.dusterthefirst.guishopminus.commands.StoreCommand;
+import com.dusterthefirst.guishopminus.store.StoreEventListener;
 
-import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
@@ -49,7 +49,9 @@ public class GuiShopMinus extends JavaPlugin {
 		}
 		setupPermissions();
 		
-		getCommand("showinv").setExecutor(new ShowInv());
+		getCommand("store").setExecutor(new StoreCommand());
+		
+		getServer().getPluginManager().registerEvents(new StoreEventListener(), this);
 	}
 
 	// Fired when plugin is disabled

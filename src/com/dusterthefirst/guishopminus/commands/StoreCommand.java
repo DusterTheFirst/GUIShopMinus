@@ -1,6 +1,5 @@
 package com.dusterthefirst.guishopminus.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,13 +9,14 @@ import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.annotation.permission.Permission;
 
 import com.dusterthefirst.guishopminus.GuiShopMinus;
+import com.dusterthefirst.guishopminus.store.Store;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 
-@org.bukkit.plugin.java.annotation.command.Command(name = "showinv", desc = "Show a test inventory", permission = "test.inv", permissionMessage = "You do not have permission!", usage = "Usage: /<command>")
-@Permission(name = "test.inv", desc = "Allows showinv command", defaultValue = PermissionDefault.OP)
-public class ShowInv implements CommandExecutor {
+@org.bukkit.plugin.java.annotation.command.Command(name = "store", desc = "Show a test inventory", permission = "test.inv", permissionMessage = "You do not have permission!", usage = "Usage: /<command>")
+@Permission(name = "test.store", desc = "Allows store command", defaultValue = PermissionDefault.OP)
+public class StoreCommand implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Economy econ = GuiShopMinus.getEconomy();
@@ -33,7 +33,7 @@ public class ShowInv implements CommandExecutor {
                 sender.sendMessage(String.format("An error occured: %s", r.errorMessage));
             }
             
-            player.openInventory(Bukkit.createInventory(player, 9, ChatColor.RED + "GUI " + ChatColor.YELLOW + "SHOP"));
+            player.openInventory(new Store("Cool shop").asInventory(player));
             return true;
         } else {
         	sender.sendMessage(ChatColor.RED + "You must run this command as a player");
