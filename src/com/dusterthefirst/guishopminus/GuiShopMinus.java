@@ -16,8 +16,9 @@ import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-import com.dusterthefirst.guishopminus.commands.StoreCommand;
-import com.dusterthefirst.guishopminus.store.StoreEventListener;
+import com.dusterthefirst.guishopminus.shop.Shop;
+import com.dusterthefirst.guishopminus.shop.commands.ShopCommand;
+import com.dusterthefirst.guishopminus.shop.events.ShopEventListener;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -36,6 +37,7 @@ public class GuiShopMinus extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private static Economy econ = null;
 	private static Permission perms = null;
+	public static Shop store;
 
 	// Fired when plugin is first enabled
 	@Override
@@ -49,9 +51,11 @@ public class GuiShopMinus extends JavaPlugin {
 		}
 		setupPermissions();
 		
-		getCommand("store").setExecutor(new StoreCommand());
+		getCommand("shop").setExecutor(new ShopCommand());
 		
-		getServer().getPluginManager().registerEvents(new StoreEventListener(), this);
+		getServer().getPluginManager().registerEvents(new ShopEventListener(), this);
+		
+		GuiShopMinus.store = new Shop("&aCool shop");
 	}
 
 	// Fired when plugin is disabled
