@@ -24,7 +24,7 @@ jobs:
           prerelease: true 
           name: Snapshot $TRAVIS_TAG
           on:
-            repo: DusterTheFirst/GUIShopMinus
+            repo: whsmc/GUIShopMinus
             branch: master
         # - provider: releases
         #   api_key:
