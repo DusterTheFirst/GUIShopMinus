@@ -1,19 +1,50 @@
 package com.dusterthefirst.guishopminus.shop;
 
-import org.bukkit.Material;
+import java.util.ArrayList;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import de.tr7zw.itemnbtapi.NBTItem;
 
 public class Item {
 	public Material icon;
 	public String name;
-	public String description;
 	public double price;
+	public double sellprice;
 
-	public Item(Material icon, String name, String description, double price) {
+	public Item(Material icon, String name, double price, double sellpercent) {
 		this.icon = icon;
 		this.name = ChatColor.translateAlternateColorCodes('&', name);
-		this.description = ChatColor.translateAlternateColorCodes('&', description);
 		this.price = price;
+		this.sellprice = Math.floor((price * sellpercent) / 10) * 10;
+	}
+	
+	public ItemStack toItem(int index) {
+		// Get the stack
+		ItemStack stack = new ItemStack(this.icon);
+		// Get the metadata
+		ItemMeta meta = stack.getItemMeta();
+
+		// Set the display name
+		meta.setDisplayName(this.name);
+
+		// Add the description as lore
+		ArrayList<String> lore = new ArrayList<String>();
+		lore.add(ChatColor.GRAY + "Buy: " + ChatColor.RED + "$" + this.price);
+		lore.add(ChatColor.GRAY + "Sell: " + ChatColor.GREEN + "$" + this.sellprice);
+		lore.add(ChatColor.DARK_GRAY + "" + ChatColor.STRIKETHROUGH + "To sell, click the item in your inv.");
+		meta.setLore(lore);
+
+		// Save the metadata
+		stack.setItemMeta(meta);
+
+		// Set custom NBT tags
+		NBTItem nbti = new NBTItem(stack);
+		nbti.setInteger("STORE-ITEM", index);
+
+		return nbti.getItem();
 	}
 }

@@ -37,7 +37,7 @@ public class GuiShopMinus extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private static Economy econ = null;
 	private static Permission perms = null;
-	public static Shop store;
+	public static Shop shop;
 
 	// Fired when plugin is first enabled
 	@Override
@@ -55,7 +55,7 @@ public class GuiShopMinus extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new ShopEventListener(), this);
 		
-		GuiShopMinus.store = new Shop("&aCool shop");
+		GuiShopMinus.shop = new Shop("&4SHOPNAMEHERE");
 	}
 
 	// Fired when plugin is disabled

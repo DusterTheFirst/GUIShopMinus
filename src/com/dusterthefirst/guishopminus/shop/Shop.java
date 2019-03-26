@@ -1,15 +1,13 @@
 package com.dusterthefirst.guishopminus.shop;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import de.tr7zw.itemnbtapi.NBTItem;
 import net.md_5.bungee.api.ChatColor;
 
 public class Shop {
@@ -29,56 +27,22 @@ public class Shop {
 //		this.uuid = UUID.randomUUID();
 		this.name = ChatColor.translateAlternateColorCodes('&', name);
 		this.submenus = new ArrayList<Submenu>();
-		this.submenus.add(new Submenu(Material.BIRCH_FENCE, "Bicth", "Lasagna", new ArrayList<Item>() {
-			{
-				add(new Item(Material.STICK, "dill", "dough", 69.420));
-			}
+		
+		ArrayList<Item> submenuchildren = new ArrayList<Item>(Arrays.asList(new Item[] {
+			new Item(Material.STICK, "&6Test Item", 69.420, .50),
+			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 150, .75)
 		}));
-		this.submenus.add(new Submenu(Material.ACACIA_DOOR, "FBI", "Open Up", new ArrayList<Item>() {
-			{
-				add(new Item(Material.GOLDEN_SWORD, "dull", "ee", 45.0));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.BIRCH_FENCE, "Bicth", "Lasagna", new ArrayList<Item>() {
-			{
-				add(new Item(Material.STICK, "dill", "dough", 69.420));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.ACACIA_DOOR, "FBI", "Open Up", new ArrayList<Item>() {
-			{
-				add(new Item(Material.GOLDEN_SWORD, "dull", "ee", 45.0));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.BIRCH_FENCE, "Bicth", "Lasagna", new ArrayList<Item>() {
-			{
-				add(new Item(Material.STICK, "dill", "dough", 69.420));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.ACACIA_DOOR, "FBI", "Open Up", new ArrayList<Item>() {
-			{
-				add(new Item(Material.GOLDEN_SWORD, "dull", "ee", 45.0));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.BIRCH_FENCE, "Bicth", "Lasagna", new ArrayList<Item>() {
-			{
-				add(new Item(Material.STICK, "dill", "dough", 69.420));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.ACACIA_DOOR, "FBI", "Open Up", new ArrayList<Item>() {
-			{
-				add(new Item(Material.GOLDEN_SWORD, "dull", "ee", 45.0));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.BIRCH_FENCE, "Bicth", "Lasagna", new ArrayList<Item>() {
-			{
-				add(new Item(Material.STICK, "dill", "dough", 69.420));
-			}
-		}));
-		this.submenus.add(new Submenu(Material.ACACIA_DOOR, "FBI", "Open Up", new ArrayList<Item>() {
-			{
-				add(new Item(Material.GOLDEN_SWORD, "dull", "ee", 45.0));
-			}
-		}));
+		
+		this.submenus.add(new Submenu(Material.RED_BANNER, 			"&cRed"    , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.ORANGE_WOOL, 		"&6Orange" , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.YELLOW_BED, 			"&eYellow" , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.GRASS, 				"&aGreen"  , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.BLUE_STAINED_GLASS, 	"&9Blue"   , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.PURPLE_SHULKER_BOX, 	"&5Purple" , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.PINK_DYE, 			"&dPink"   , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.COAL_BLOCK, 			"&0Black"  , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.BONE_MEAL, 			"&fWhite"  , "&8&lOptional &rDescription", submenuchildren));
+		this.submenus.add(new Submenu(Material.LAPIS_LAZULI, 		"&cg&6a&ay", "&8&lOptional &rDescription", submenuchildren));
 	}
 
 	/** Generate an inventory representation of this store */
@@ -89,36 +53,14 @@ public class Shop {
 
 //		int padding = this.submenus.size();
 		
-		// TODO: INVENTORY GENERATION (Padding + 
-		
 		System.out.printf("X:%#x Y:%#x Size:%#x", inventoryX, inventoryY, inventorySize);
 
 		Inventory inventory = Bukkit.createInventory(owner, inventorySize, this.name);
 		
-//		for (int i = 0; i < this.submenus.size(); i++) {
-//			Submenu sub = this.submenus.get(i);
-//			// Get the stack
-//			ItemStack stack = new ItemStack(sub.icon);
-//			// Get the metadata
-//			ItemMeta meta = stack.getItemMeta();
-//
-//			// Set the display name
-//			meta.setDisplayName(sub.name);
-//
-//			// Add the description as lore
-//			ArrayList<String> lore = new ArrayList<String>();
-//			lore.add(sub.description);
-//			meta.setLore(lore);
-//
-//			// Save the metadata
-//			stack.setItemMeta(meta);
-//
-//			// Set custom NBT tags
-//			NBTItem nbti = new NBTItem(stack);
-//			nbti.setInteger("STORE-SUBMENU", i);
-//
-//			inventory.addItem(nbti.getItem());
-//		}
+		for (int i = 0; i < this.submenus.size(); i++) {
+			Submenu sub = this.submenus.get(i);
+			inventory.addItem(sub.toItem(i));
+		}
 
 		inventory.setMaxStackSize(Shop.SWEETSPOT);
 
