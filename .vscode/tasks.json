@@ -7,12 +7,6 @@
             "label": "verify",
             "type": "shell",
             "command": "mvn -B verify",
-            "group": "build",
-        },
-        {
-            "label": "deploy",
-            "type": "shell",
-            "command": "deploy.bat",
             "group": {
                 "kind": "build",
                 "isDefault": true

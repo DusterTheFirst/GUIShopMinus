@@ -1,6 +1,3 @@
-# Local build scripts
-*.bat
-
 # Generated files
 target
 

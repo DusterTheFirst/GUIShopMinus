@@ -13,7 +13,9 @@ import de.tr7zw.itemnbtapi.NBTItem;
 public class ShopEventListener implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		if (event.getInventory() == null || event.getCurrentItem() == null) return;
+		Player player = (Player) event.getWhoClicked();
+
+		if (event.getInventory() == null || event.getCurrentItem() == null || player == null) return;
 		
 		
 		if (event.getInventory().getMaxStackSize() == Shop.SWEETSPOT) {
@@ -26,9 +28,12 @@ public class ShopEventListener implements Listener {
 		if (item.hasKey("STORE-SUBMENU")) {
 			System.out.println(item.getInteger("STORE-SUBMENU"));
 			
-			Player player = (Player) event.getWhoClicked();
 			
 			player.openInventory(GuiShopMinus.shop.submenus.get(item.getInteger("STORE-SUBMENU")).asInventory(player));
-		} 
+		} if (item.hasKey("STORE-SUBMENU-CLOSE")) {
+			player.openInventory(GuiShopMinus.shop.asInventory(player));
+		} if (item.hasKey("STORE-CLOSE")) {
+			player.closeInventory();
+		}
 	}
 }

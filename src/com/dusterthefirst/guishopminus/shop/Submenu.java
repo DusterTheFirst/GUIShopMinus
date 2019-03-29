@@ -2,17 +2,16 @@ package com.dusterthefirst.guishopminus.shop;
 
 import java.util.ArrayList;
 
+import com.dusterthefirst.guishopminus.GuiShopMinus;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.dusterthefirst.guishopminus.GuiShopMinus;
-import com.dusterthefirst.guishopminus.shop.Item;
-
-import net.md_5.bungee.api.ChatColor;
 import de.tr7zw.itemnbtapi.NBTItem;
 
 public class Submenu {
@@ -56,7 +55,7 @@ public class Submenu {
 	/** Generate an inventory representation of this submenu */
 	public Inventory asInventory(/*Shop parent, */Player owner) {
 		int inventoryX = 9;
-		int inventoryY = (this.items.size() / inventoryX) + 1;
+		int inventoryY = ((this.items.size() + 1) / inventoryX) + 1;
 		int inventorySize = inventoryX * inventoryY;
 		
 		System.out.printf("X:%#x Y:%#x Size:%#x", inventoryX, inventoryY, inventorySize);
@@ -67,6 +66,8 @@ public class Submenu {
 			Item item = this.items.get(i);
 			inventory.addItem(item.toItem(i));
 		}
+
+		inventory.setItem(inventory.getSize() - 1, CloseItem.closeSubmenuItem());
 
 		inventory.setMaxStackSize(Shop.SWEETSPOT);
 

@@ -15,11 +15,11 @@ public class Item {
 	public double price;
 	public double sellprice;
 
-	public Item(Material icon, String name, double price, double sellpercent) {
+	public Item(Material icon, String name, double price, double sellprice) {
 		this.icon = icon;
 		this.name = ChatColor.translateAlternateColorCodes('&', name);
 		this.price = price;
-		this.sellprice = Math.floor((price * sellpercent) / 10) * 10;
+		this.sellprice = sellprice;
 	}
 	
 	public ItemStack toItem(int index) {

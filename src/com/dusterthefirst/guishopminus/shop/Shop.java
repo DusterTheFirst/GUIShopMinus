@@ -29,8 +29,8 @@ public class Shop {
 		this.submenus = new ArrayList<Submenu>();
 		
 		ArrayList<Item> submenuchildren = new ArrayList<Item>(Arrays.asList(new Item[] {
-			new Item(Material.STICK, "&6Test Item", 69.420, .50),
-			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 150, .75)
+			new Item(Material.STICK, "&6Test Item", 69.420, 50),
+			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 150, 75)
 		}));
 		
 		this.submenus.add(new Submenu(Material.RED_BANNER, 			"&cRed"    , "&8&lOptional &rDescription", submenuchildren));
@@ -48,7 +48,7 @@ public class Shop {
 	/** Generate an inventory representation of this store */
 	public Inventory asInventory(Player owner) {
 		int inventoryX = 9;
-		int inventoryY = (this.submenus.size() / inventoryX) + 1;
+		int inventoryY = ((this.submenus.size() + 1) / inventoryX) + 1;
 		int inventorySize = inventoryX * inventoryY;
 
 //		int padding = this.submenus.size();
@@ -61,6 +61,8 @@ public class Shop {
 			Submenu sub = this.submenus.get(i);
 			inventory.addItem(sub.toItem(i));
 		}
+
+		inventory.setItem(inventory.getSize() - 1, CloseItem.closeShopItem());
 
 		inventory.setMaxStackSize(Shop.SWEETSPOT);
 
