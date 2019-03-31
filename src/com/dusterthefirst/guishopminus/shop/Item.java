@@ -22,7 +22,7 @@ public class Item {
 		this.sellprice = sellprice;
 	}
 	
-	public ItemStack toItem(int index) {
+	public ItemStack toItem(int item, int shop) {
 		// Get the stack
 		ItemStack stack = new ItemStack(this.icon);
 		// Get the metadata
@@ -43,7 +43,8 @@ public class Item {
 
 		// Set custom NBT tags
 		NBTItem nbti = new NBTItem(stack);
-		nbti.setInteger("STORE-ITEM", index);
+		nbti.setInteger("STORE-ITEM", item);
+		nbti.setInteger("STORE-ITEM-SHOP", shop);
 
 		return nbti.getItem();
 	}

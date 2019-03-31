@@ -1,8 +1,7 @@
 # GUIShopMinus
 FOSS alternitive to GUIShopPlus
 
-[![Build Status](https://travis-ci.org/DusterTheFirst/GUIShopMinus.svg?branch=master)](https://travis-ci.org/DusterTheFirst/GUIShopMinus)
-
+[![Build Status](https://travis-ci.org/whsmc/GUIShopMinus.svg?branch=master)](https://travis-ci.org/whsmc/GUIShopMinus)
 # Installation
 
 Coming soon

@@ -19,7 +19,7 @@ public class Submenu {
 	public String name;
 	public String description;
 
-	private ArrayList<Item> items;
+	public ArrayList<Item> items;
 
 	public Submenu(Material icon, String name, String description, ArrayList<Item> items) {
 		this.icon = icon;
@@ -53,7 +53,7 @@ public class Submenu {
 	}
 	
 	/** Generate an inventory representation of this submenu */
-	public Inventory asInventory(/*Shop parent, */Player owner) {
+	public Inventory asInventory(/*Shop parent, */Player owner, int index) {
 		int inventoryX = 9;
 		int inventoryY = ((this.items.size() + 1) / inventoryX) + 1;
 		int inventorySize = inventoryX * inventoryY;
@@ -64,7 +64,7 @@ public class Submenu {
 		
 		for (int i = 0; i < this.items.size(); i++) {
 			Item item = this.items.get(i);
-			inventory.addItem(item.toItem(i));
+			inventory.addItem(item.toItem(i, index));
 		}
 
 		inventory.setItem(inventory.getSize() - 1, CloseItem.closeSubmenuItem());
