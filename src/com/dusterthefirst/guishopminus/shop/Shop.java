@@ -29,8 +29,8 @@ public class Shop {
 		this.submenus = new ArrayList<Submenu>();
 		
 		ArrayList<Item> submenuchildren = new ArrayList<Item>(Arrays.asList(new Item[] {
-			new Item(Material.STICK, "&6Test Item", 69.420, 50),
-			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 150, 75)
+			new Item(Material.STICK, "&6Test Item", 10, 69.420, 50),
+			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 1, 150, 75)
 		}));
 		
 		this.submenus.add(new Submenu(Material.RED_BANNER, 			"&cRed"    , "&8&lOptional &rDescription", submenuchildren));

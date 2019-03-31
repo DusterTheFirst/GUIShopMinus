@@ -12,8 +12,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import de.tr7zw.itemnbtapi.NBTItem;
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 
 public class ShopEventListener implements Listener {
 	@EventHandler
@@ -26,6 +24,8 @@ public class ShopEventListener implements Listener {
 		if (event.getInventory().getMaxStackSize() == Shop.SWEETSPOT) {
 			event.setCancelled(true);
 			System.out.println("F");
+		} else {
+			return;
 		}
 		
 		NBTItem item = new NBTItem(event.getCurrentItem());
@@ -39,23 +39,20 @@ public class ShopEventListener implements Listener {
 		} if (item.hasKey("STORE-CLOSE")) {
 			player.closeInventory();
 		} if (item.hasKey("STORE-ITEM")) {
-			int amount = event.isShiftClick() ? item.getItem().getMaxStackSize() : 1;
-
 			Submenu sub = GuiShopMinus.shop.submenus.get(item.getInteger("STORE-ITEM-SHOP"));
 			Item storeitem = sub.items.get(item.getInteger("STORE-ITEM"));
 
-			double price = storeitem.price * amount;
-
-			Economy econ = GuiShopMinus.getEconomy();
-
-            EconomyResponse r = econ.withdrawPlayer(player, price);
-            if(r.transactionSuccess()) {
-                player.sendMessage(String.format("You were charged %s and now have %s", econ.format(r.amount), econ.format(r.balance)));
-            } else {
-                player.sendMessage(String.format("An error occured: %s", r.errorMessage));
-            }
-
-			player.getInventory().addItem(new ItemStack(item.getItem().getType(), amount));
+			storeitem.buy(event.isShiftClick(), player);
+		} else {
+			ItemStack clicked = event.getCurrentItem();
+			for (Submenu sub : GuiShopMinus.shop.submenus) {
+				for (Item storeitem : sub.items) {
+					if (storeitem.material == clicked.getType()) {
+						storeitem.sell(clicked, player, event.getSlot());
+						return;
+					}
+				}
+			}
 		}
 	}
 }
