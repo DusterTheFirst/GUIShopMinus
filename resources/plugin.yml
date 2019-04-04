@@ -1,0 +1,17 @@
+main: "com.dusterthefirst.guishopminus.GuiShopMinus"
+name: "GuiShopMinus"
+version: "0.1"
+description: "A FOSS Alternitive to GuiShopPlus"
+author: "DusterTheFirst"
+website: "dusterthefirst.com"
+
+depend:
+  - Vault
+load: STARTUP
+prefix: "GSM"
+api-version: "1.13"
+
+commands:
+  shop:
+    description: "Optn the shop"
+    usage: "Usage: /<command>"
