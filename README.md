@@ -2,9 +2,14 @@
 FOSS alternitive to GUIShopPlus
 
 [![Build Status](https://travis-ci.org/whsmc/GUIShopMinus.svg?branch=master)](https://travis-ci.org/whsmc/GUIShopMinus)
+
 # Installation
 
 Coming soon
+
+# Configuration
+
+Coming soon  https://whsmc.github.io/GUIShopMinus
 
 # License
 
