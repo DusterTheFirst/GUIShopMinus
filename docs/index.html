@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>GuiShopMinus</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <form id="form">
+                <fieldset>
+                    <h1>{{title.length === 0 ? "No Search" : title}}</h1>
+                    <input v-model="title">
+                </fieldset>
+                <ul>
+                    <li v-for="color of colors">
+                        <span v-bind:style="{'color': toColor(color.color)}">{{color.name}}</span>
+                    </li>
+                    <div v-if="colors.length === 0">Nothing</div>
+                </ul>
+            </form>
+        </div>
+        <!-- <script src="dist/bundle.js"></script> -->
+    </body>
+</html>
