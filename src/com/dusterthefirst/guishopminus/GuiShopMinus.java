@@ -6,23 +6,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
-import com.dusterthefirst.guishopminus.shop.Item;
 import com.dusterthefirst.guishopminus.shop.Shop;
-import com.dusterthefirst.guishopminus.shop.Submenu;
 import com.dusterthefirst.guishopminus.shop.commands.ShopCommand;
 import com.dusterthefirst.guishopminus.shop.events.ShopEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.apache.commons.io.IOUtils;
-import org.bukkit.Material;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.junit.Test;
 
 import net.milkbowl.vault.economy.Economy;
 
