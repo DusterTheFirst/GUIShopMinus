@@ -21,13 +21,14 @@ public class Submenu {
 
 	public ArrayList<Item> items;
 
+	@Deprecated
 	public Submenu(Material icon, String name, String description, ArrayList<Item> items) {
 		this.icon = icon;
-		this.name = ChatColor.translateAlternateColorCodes('&', name);
-		this.description = ChatColor.translateAlternateColorCodes('&', description);
+		this.name = name;
+		this.description = description;
 		this.items = items;
 	}
-	
+
 	public ItemStack toItem(int index) {
 		// Get the stack
 		ItemStack stack = new ItemStack(this.icon);
@@ -35,11 +36,11 @@ public class Submenu {
 		ItemMeta meta = stack.getItemMeta();
 
 		// Set the display name
-		meta.setDisplayName(this.name);
+		meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', this.name));
 
 		// Add the description as lore
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add(this.description);
+		lore.add(ChatColor.translateAlternateColorCodes('&', this.description));
 		meta.setLore(lore);
 
 		// Save the metadata
@@ -51,17 +52,17 @@ public class Submenu {
 
 		return nbti.getItem();
 	}
-	
+
 	/** Generate an inventory representation of this submenu */
-	public Inventory asInventory(/*Shop parent, */Player owner, int index) {
+	public Inventory asInventory(/* Shop parent, */Player owner, int index) {
 		int inventoryX = 9;
 		int inventoryY = ((this.items.size() + 1) / inventoryX) + 1;
 		int inventorySize = inventoryX * inventoryY;
-		
-		System.out.printf("X:%#x Y:%#x Size:%#x", inventoryX, inventoryY, inventorySize);
 
-		Inventory inventory = Bukkit.createInventory(owner, inventorySize, GuiShopMinus.shop.name + ChatColor.DARK_GRAY + " > " + ChatColor.RESET + this.name);
-		
+		Inventory inventory = Bukkit.createInventory(owner, inventorySize,
+				ChatColor.translateAlternateColorCodes('&', GuiShopMinus.shop.name) + ChatColor.DARK_GRAY + " > "
+						+ ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', this.name));
+
 		for (int i = 0; i < this.items.size(); i++) {
 			Item item = this.items.get(i);
 			inventory.addItem(item.toItem(i, index));

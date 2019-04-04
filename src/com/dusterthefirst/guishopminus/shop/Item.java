@@ -21,14 +21,15 @@ public class Item {
 	private double price;
 	private double sellprice;
 
+	@Deprecated
 	public Item(Material material, String name, int amount, double price, double sellprice) {
 		this.material = material;
-		this.name = ChatColor.translateAlternateColorCodes('&', name);
+		this.name = name;
 		this.amount = amount;
 		this.price = price;
 		this.sellprice = sellprice;
 	}
-	
+
 	public ItemStack toItem(int item, int shop) {
 		// Get the stack
 		ItemStack stack = new ItemStack(this.material, this.amount);
@@ -36,7 +37,7 @@ public class Item {
 		ItemMeta meta = stack.getItemMeta();
 
 		// Set the display name
-		meta.setDisplayName(this.name);
+		meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', this.name));
 
 		// Add the description as lore
 		ArrayList<String> lore = new ArrayList<String>();
@@ -70,15 +71,20 @@ public class Item {
 		EconomyResponse r = econ.withdrawPlayer(player, price);
 
 		// Check the status of the transaction
-		if(r.transactionSuccess()) {
+		if (r.transactionSuccess()) {
 			// Tell the player of their current currency status
-			player.sendMessage(String.format(ChatColor.GREEN + "You were charged " + ChatColor.YELLOW + "%s" + ChatColor.GREEN + " and now have " + ChatColor.BLUE + "%s", econ.format(r.amount), econ.format(r.balance)));
-			
+			player.sendMessage(
+					String.format(
+							ChatColor.GREEN + "You were charged " + ChatColor.YELLOW + "%s" + ChatColor.GREEN
+									+ " and now have " + ChatColor.BLUE + "%s",
+							econ.format(r.amount), econ.format(r.balance)));
+
 			// Give them the items
 			player.getInventory().addItem(new ItemStack(this.material, amount));
 		} else {
 			// Send error message if there was one
-			player.sendMessage(String.format(ChatColor.DARK_RED + "An error occured: " + ChatColor.YELLOW + "%s", r.errorMessage));
+			player.sendMessage(
+					String.format(ChatColor.DARK_RED + "An error occured: " + ChatColor.YELLOW + "%s", r.errorMessage));
 		}
 	}
 
@@ -96,15 +102,20 @@ public class Item {
 		EconomyResponse r = econ.depositPlayer(player, price);
 
 		// Check the status of the transaction
-		if(r.transactionSuccess()) {
+		if (r.transactionSuccess()) {
 			// Tell the player of their current currency status
-			player.sendMessage(String.format(ChatColor.GREEN + "You were given " + ChatColor.YELLOW + "%s" + ChatColor.GREEN + " and now have " + ChatColor.BLUE + "%s", econ.format(r.amount), econ.format(r.balance)));
-			
+			player.sendMessage(
+					String.format(
+							ChatColor.GREEN + "You were given " + ChatColor.YELLOW + "%s" + ChatColor.GREEN
+									+ " and now have " + ChatColor.BLUE + "%s",
+							econ.format(r.amount), econ.format(r.balance)));
+
 			// Give them the items
 			player.getInventory().setItem(index, new ItemStack(Material.AIR));
 		} else {
 			// Send error message if there was one
-			player.sendMessage(String.format(ChatColor.DARK_RED + "An error occured: " + ChatColor.YELLOW + "%s", r.errorMessage));
+			player.sendMessage(
+					String.format(ChatColor.DARK_RED + "An error occured: " + ChatColor.YELLOW + "%s", r.errorMessage));
 		}
 	}
 }

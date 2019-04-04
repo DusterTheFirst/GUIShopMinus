@@ -19,30 +19,14 @@ public class Shop {
 	/** The UUID of the shop */
 //	public final UUID uuid;
 	/** The name of the shop */
-	public final String name;
+	public String name;
 	/** The submenus in the shop */
 	public ArrayList<Submenu> submenus;
 
+	@Deprecated
 	public Shop(String name) {
-//		this.uuid = UUID.randomUUID();
-		this.name = ChatColor.translateAlternateColorCodes('&', name);
+		this.name = name;
 		this.submenus = new ArrayList<Submenu>();
-		
-		ArrayList<Item> submenuchildren = new ArrayList<Item>(Arrays.asList(new Item[] {
-			new Item(Material.STICK, "&6Test Item", 10, 69.420, 50),
-			new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 1, 150, 75)
-		}));
-		
-		this.submenus.add(new Submenu(Material.RED_BANNER, 			"&cRed"    , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.ORANGE_WOOL, 		"&6Orange" , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.YELLOW_BED, 			"&eYellow" , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.GRASS, 				"&aGreen"  , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.BLUE_STAINED_GLASS, 	"&9Blue"   , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.PURPLE_SHULKER_BOX, 	"&5Purple" , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.PINK_DYE, 			"&dPink"   , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.COAL_BLOCK, 			"&0Black"  , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.BONE_MEAL, 			"&fWhite"  , "&8&lOptional &rDescription", submenuchildren));
-		this.submenus.add(new Submenu(Material.LAPIS_LAZULI, 		"&cg&6a&ay", "&8&lOptional &rDescription", submenuchildren));
 	}
 
 	/** Generate an inventory representation of this store */
@@ -51,11 +35,7 @@ public class Shop {
 		int inventoryY = ((this.submenus.size() + 1) / inventoryX) + 1;
 		int inventorySize = inventoryX * inventoryY;
 
-//		int padding = this.submenus.size();
-		
-		System.out.printf("X:%#x Y:%#x Size:%#x", inventoryX, inventoryY, inventorySize);
-
-		Inventory inventory = Bukkit.createInventory(owner, inventorySize, this.name);
+		Inventory inventory = Bukkit.createInventory(owner, inventorySize, ChatColor.translateAlternateColorCodes('&', this.name));
 		
 		for (int i = 0; i < this.submenus.size(); i++) {
 			Submenu sub = this.submenus.get(i);
