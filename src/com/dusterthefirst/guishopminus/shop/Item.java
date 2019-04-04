@@ -21,15 +21,6 @@ public class Item {
 	private double price;
 	private double sellprice;
 
-	@Deprecated
-	public Item(Material material, String name, int amount, double price, double sellprice) {
-		this.material = material;
-		this.name = name;
-		this.amount = amount;
-		this.price = price;
-		this.sellprice = sellprice;
-	}
-
 	public ItemStack toItem(int item, int shop) {
 		// Get the stack
 		ItemStack stack = new ItemStack(this.material, this.amount);

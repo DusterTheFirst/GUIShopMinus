@@ -21,14 +21,6 @@ public class Submenu {
 
 	public ArrayList<Item> items;
 
-	@Deprecated
-	public Submenu(Material icon, String name, String description, ArrayList<Item> items) {
-		this.icon = icon;
-		this.name = name;
-		this.description = description;
-		this.items = items;
-	}
-
 	public ItemStack toItem(int index) {
 		// Get the stack
 		ItemStack stack = new ItemStack(this.icon);

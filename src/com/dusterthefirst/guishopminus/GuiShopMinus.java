@@ -16,6 +16,7 @@ import com.dusterthefirst.guishopminus.shop.Submenu;
 import com.dusterthefirst.guishopminus.shop.commands.ShopCommand;
 import com.dusterthefirst.guishopminus.shop.events.ShopEventListener;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.io.IOUtils;
 import org.bukkit.Material;
@@ -29,13 +30,11 @@ public class GuiShopMinus extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private static Economy econ = null;
 	public static Shop shop;
-	public static final Gson GSON = new Gson();
+	public static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
 
 	// Fired when plugin is first enabled
 	@Override
 	public void onEnable() {
-		System.out.println(test());
-
 		if (!setupEconomy()) {
 			log.severe(
 					String.format("[%s] - Disabled due to no Economy dependency found!", getDescription().getName()));
@@ -58,37 +57,13 @@ public class GuiShopMinus extends JavaPlugin {
 		}
 
 		try {
-			GuiShopMinus.shop = loadShop(IOUtils.toString(new FileInputStream(configfile)));
+			GuiShopMinus.shop = loadShop(IOUtils.toString(new FileInputStream(configfile), "utf-8"));
 		} catch (Exception e) {
 			log.severe(e.getMessage());
 
 			this.getPluginLoader().disablePlugin(this);
 			return;
 		}
-	}
-
-	public String test() {
-		ArrayList<Item> submenuchildren = new ArrayList<Item>(
-				Arrays.asList(new Item[] { new Item(Material.STICK, "&6Test Item", 10, 69.420, 50),
-						new Item(Material.BLUE_SHULKER_BOX, "&6Test Item 2", 1, 150, 75) }));
-
-		Shop shop = new Shop("&4SHOPNAMEHERE");
-
-		shop.submenus.add(new Submenu(Material.RED_BANNER, "&cRed", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.ORANGE_WOOL, "&6Orange", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.YELLOW_BED, "&eYellow", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.GRASS, "&aGreen", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus
-				.add(new Submenu(Material.BLUE_STAINED_GLASS, "&9Blue", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(
-				new Submenu(Material.PURPLE_SHULKER_BOX, "&5Purple", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.PINK_DYE, "&dPink", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.COAL_BLOCK, "&0Black", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus.add(new Submenu(Material.BONE_MEAL, "&fWhite", "&8&lOptional &rDescription", submenuchildren));
-		shop.submenus
-				.add(new Submenu(Material.LAPIS_LAZULI, "&cg&6a&ay", "&8&lOptional &rDescription", submenuchildren));
-
-		return GSON.toJson(shop);
 	}
 
 	public Shop loadShop(String json) {

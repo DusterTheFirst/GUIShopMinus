@@ -23,12 +23,6 @@ public class Shop {
 	/** The submenus in the shop */
 	public ArrayList<Submenu> submenus;
 
-	@Deprecated
-	public Shop(String name) {
-		this.name = name;
-		this.submenus = new ArrayList<Submenu>();
-	}
-
 	/** Generate an inventory representation of this store */
 	public Inventory asInventory(Player owner) {
 		int inventoryX = 9;

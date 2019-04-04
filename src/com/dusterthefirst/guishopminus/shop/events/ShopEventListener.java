@@ -23,7 +23,6 @@ public class ShopEventListener implements Listener {
 		
 		if (event.getInventory().getMaxStackSize() == Shop.SWEETSPOT) {
 			event.setCancelled(true);
-			System.out.println("F");
 		} else {
 			return;
 		}
@@ -31,8 +30,6 @@ public class ShopEventListener implements Listener {
 		NBTItem item = new NBTItem(event.getCurrentItem());
 		
 		if (item.hasKey("STORE-SUBMENU")) {
-			System.out.println(item.getInteger("STORE-SUBMENU"));
-			
 			player.openInventory(GuiShopMinus.shop.submenus.get(item.getInteger("STORE-SUBMENU")).asInventory(player, item.getInteger("STORE-SUBMENU")));
 		} if (item.hasKey("STORE-SUBMENU-CLOSE")) {
 			player.openInventory(GuiShopMinus.shop.asInventory(player));
