@@ -5,7 +5,7 @@ git config --local user.name "Deployment Bot"
 git config --local user.email "deploy@travis-ci.org"
 
 # Get environment variables
-branch=$GIT_BRANCH
+branch=$TRAVIS_BRANCH
 repo_slug=$TRAVIS_REPO_SLUG
 token=$GITHUB_TOKEN
 
