@@ -7,10 +7,13 @@
             "label": "verify",
             "type": "shell",
             "command": "mvn -B verify",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
+        },
+        {
+            "label": "webpack",
+            "type": "shell",
+            "command": "cd website && npm start",
+            "group": "build"
         },
         {
             "label": "test",
