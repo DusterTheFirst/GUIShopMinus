@@ -15,6 +15,7 @@ matrix:
       before_deploy:
         - git config --local user.name "DusterTheFirst"
         - git config --local user.email "dusterthefirst@users.noreply.github.com"
+        - export RELEASE_DESC=$(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)
         - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
         - git tag $TRAVIS_TAG
         - mv target/GuiShopMinus.jar target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar
@@ -26,7 +27,7 @@ matrix:
         file: target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar
         skip_cleanup: true
         prerelease: true 
-        body: $(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)
+        body: '"$RELEASE_DESC"'
         name: Snapshot $TRAVIS_TAG
         on:
           repo: whsmc/GUIShopMinus
