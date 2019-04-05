@@ -1,6 +1,7 @@
 import Vue from "vue";
 import colors from "./colorcodes.json";
 
+// Test Vue App
 let vm = new Vue({
     el: "#form",
     data: {
