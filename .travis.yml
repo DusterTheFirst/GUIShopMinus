@@ -27,7 +27,7 @@ matrix:
         file: target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar
         skip_cleanup: true
         prerelease: true 
-        body: $RELEASE_DESC
+        body: $(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)
         name: Snapshot $TRAVIS_TAG
         on:
           repo: whsmc/GUIShopMinus
