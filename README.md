@@ -9,7 +9,7 @@ Coming soon
 
 # Configuration
 
-Coming soon  https://whsmc.github.io/GUIShopMinus
+https://whsmc.github.io/GUIShopMinus
 
 # License
 
