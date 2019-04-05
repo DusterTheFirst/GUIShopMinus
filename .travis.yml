@@ -30,7 +30,7 @@ matrix:
         - "10"
       cache: npm
       script: 
-        - cd website && npm build
+        - cd website && npm run build
       deploy:
         # Deploy the webapp to gh-pages
         - provider: pages
