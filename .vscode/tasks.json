@@ -6,7 +6,7 @@
         {
             "label": "Maven Build",
             "type": "shell",
-            "command": "npx cross-env VERSION=development mvn -B verify",
+            "command": "mvn -B verify",
             "group": "build",
             "problemMatcher": []
         },
@@ -19,7 +19,7 @@
         {
             "label": "test",
             "type": "shell",
-            "command": "npx cross-env VERSION=development mvn -B test",
+            "command": "mvn -B test",
             "group": "test"
         }
     ]
