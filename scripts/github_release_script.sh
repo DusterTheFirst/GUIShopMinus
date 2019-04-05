@@ -17,7 +17,8 @@ git tag $version
 
 # Create the body of a release
 body="## Changes in this release
-$(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)"
+$(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)
+> Thank you for your support"
 
 # Echo status
 echo "Create release $version for repo: $repo_slug, branch: $branch"
