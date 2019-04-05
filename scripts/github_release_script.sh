@@ -14,6 +14,7 @@ version=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
 
 # Add the tag
 git tag $version
+git push --tags
 
 # Create the body of a release
 body="## Changes in this release
