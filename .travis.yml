@@ -14,7 +14,7 @@ matrix:
       # Deploy to GH releases
       deploy:
         provider: script
-        script: bash github_release_script.sh
+        script: bash -x github_release_script.sh
         skip_cleanup: true
         on:
           repo: whsmc/GUIShopMinus
