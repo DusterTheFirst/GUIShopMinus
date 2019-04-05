@@ -31,6 +31,7 @@ matrix:
       cache: npm
       script:
         - cd website
+        - npm ci
         - npm run build
       deploy:
         # Deploy the webapp to gh-pages
