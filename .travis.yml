@@ -22,7 +22,7 @@ matrix:
           file: target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar
           skip_cleanup: true
           prerelease: true 
-          body: $RELEASE_DESC
+          body: "$RELEASE_DESC"
           name: Snapshot $TRAVIS_TAG
           on:
             repo: whsmc/GUIShopMinus
