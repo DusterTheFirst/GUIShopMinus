@@ -1,9 +1,14 @@
 #!/bin/bash
 
+git config --local user.name "DusterTheFirst"
+git config --local user.email "dusterthefirst@users.noreply.github.com"
+
 branch=$GIT_BRANCH
 repo_slug=$TRAVIS_REPO_SLUG
 token=$GITHUB_TOKEN
-version=$TRAVIS_TAG
+version=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
+
+git tag $version
 
 body="## Changes in this release\n$(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)"
 
@@ -23,6 +28,7 @@ URL=$(jq -n \
       prerelease: true
     }' \
     | curl -H "Authorization: token $token" --data @- "https://api.github.com/repos/$repo_slug/releases" \
-    | jq ".upload_url")
+    | jq ".upload_url" \
+    | sed -e "s/{?name,label}/?name=target\/GuiShopMinus-$version-SNAPSHOT.jar/g")
 
-curl -H "Authorization: token $token" --data @target/GuiShopMinus-$TRAVIS_TAG-SNAPSHOT.jar $URL
+curl -H "Authorization: token $token" --data @target/GuiShopMinus.jar $URL
