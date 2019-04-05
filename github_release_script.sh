@@ -31,4 +31,4 @@ URL=$(jq -n \
     | jq ".upload_url" \
     | sed -e "s/{?name,label}/?name=target\/GuiShopMinus-$version-SNAPSHOT.jar/g")
 
-curl -H "Authorization: token $token" --data @target/GuiShopMinus.jar "$URL"
+curl -H "Authorization: token $token" --data @target/GuiShopMinus.jar ${URL}
