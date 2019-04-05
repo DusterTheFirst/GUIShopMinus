@@ -5,11 +5,11 @@ FOSS alternitive to GUIShopPlus
 
 # Installation
 
-Coming soon
+TODO
 
 # Configuration
 
-Coming soon  https://whsmc.github.io/GUIShopMinus
+https://whsmc.github.io/GUIShopMinus
 
 # License
 

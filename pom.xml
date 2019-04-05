@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dusterthefirst</groupId>
 	<artifactId>guishopminus</artifactId>
-	<version>0.0.1</version>
+	<version>${env.VERSION}</version>
 	<name>GUI Shop Minus</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -11,10 +11,14 @@ matrix:
         - .autoconf
         - $HOME/.m2
         - $HOME/.gradle
+      # Generate a version and set it into a env
+      before_script: 
+        - bash scripts/plugin_version.sh
+        - bash scripts/source_hash.sh
       # Deploy to GH releases
       deploy:
         provider: script
-        script: bash scripts/github_release_script.sh
+        script: bash scripts/github_release.sh
         skip_cleanup: true
         on:
           repo: whsmc/GUIShopMinus

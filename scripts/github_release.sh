@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Generate a version
-version=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
-
-# Add the tag
-git tag $version
-
 # Create the body of a release
 body="## Changes in this release
 $(git log --format="- %aN - %s (%h)" $TRAVIS_COMMIT_RANGE)
@@ -24,3 +18,6 @@ url=$(curl -sS -H "Authorization: token $GITHUB_TOKEN" --data "$payload" "https:
 
 # Upload the archive
 curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/java-archive" --data @target/GuiShopMinus.jar $url > /dev/null
+
+# Generate hash for the archive
+archive_hash=shasum -a 256 target/GuiShopMinus.jar

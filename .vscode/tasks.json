@@ -4,13 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "verify",
+            "label": "Maven Build",
             "type": "shell",
-            "command": "mvn -B verify",
-            "group": "build"
+            "command": "npx cross-env VERSION=development mvn -B verify",
+            "group": "build",
+            "problemMatcher": []
         },
         {
-            "label": "webpack",
+            "label": "Webpack Build",
             "type": "shell",
             "command": "cd website && npm start",
             "group": "build"
@@ -18,7 +19,7 @@
         {
             "label": "test",
             "type": "shell",
-            "command": "mvn -B test",
+            "command": "npx cross-env VERSION=development mvn -B test",
             "group": "test"
         }
     ]
