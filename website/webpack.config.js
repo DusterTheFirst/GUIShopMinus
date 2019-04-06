@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/app.ts',
@@ -24,10 +25,14 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin([
+            "public"
+        ]),
         new HtmlWebpackPlugin({
-            template: "index.html"
+            template: "public/index.html"
         }),
-       new webpack.HotModuleReplacementPlugin()
+       new webpack.HotModuleReplacementPlugin(),
+       
     ],
     devServer: {
         contentBase: './dist',

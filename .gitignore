@@ -1,6 +1,7 @@
 # Generated files
 target
 dependency-reduced-pom.xml
+.DS_Store
 
 # Compiled class file
 *.class

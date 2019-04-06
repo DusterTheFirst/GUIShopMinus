@@ -1,5 +1,6 @@
 import Vue from "vue";
 import colors from "./colorcodes.json";
+import items from "./items.json"
 
 // Test Vue App
 let vm = new Vue({
