@@ -25,7 +25,7 @@ let vm = new Vue({
         ),
         title: ""
     },
-    el: "#form",
+    el: "#app",
     methods: {
         // tslint:disable: no-bitwise no-parameter-reassignment
         toColor(num: number) {
