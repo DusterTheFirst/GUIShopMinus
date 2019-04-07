@@ -3,8 +3,11 @@
  */
 
 import Vue from "vue";
+import VueLazyload from "vue-lazyload";
 import colors from "./colorcodes.json";
 import items from "./items.json";
+
+Vue.use(VueLazyload);
 
 // tslint:disable: no-invalid-this
 
@@ -13,16 +16,19 @@ let vm = new Vue({
     computed: {
         colors() {
             return Object.values(colors).filter(x => x.name.toLowerCase().includes(this.title.toLowerCase()));
+        },
+        items() {
+            return items.map(x =>
+                ({
+                    image: `./items/${x.type}-${x.meta}.png`,
+                    info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
+                    name: x.name,
+                    show: x.name.toLowerCase().includes(this.title.toLowerCase())
+                })
+            );
         }
     },
     data: {
-        items: items.map(x =>
-            ({
-                image: `./items/${x.type}-${x.meta}.png`,
-                info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
-                name: x.name
-            })
-        ),
         title: ""
     },
     el: "#app",
