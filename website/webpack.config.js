@@ -37,7 +37,7 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"]
     },
     output: {
-        filename: "bundle.js",
+        filename: "[name].[hash].js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [

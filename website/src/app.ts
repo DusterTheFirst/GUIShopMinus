@@ -34,8 +34,8 @@ let vm = new Vue({
         items: items.map(x =>
             ({
                 image: getItemIcon(x.type, x.meta),
-                name: x.name,
-                info: `${x.name} (${x.text_type}): ${x.type}-${x.meta}`
+                info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
+                name: x.name
             })
         ),
         title: ""
