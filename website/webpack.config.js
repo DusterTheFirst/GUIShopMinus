@@ -1,27 +1,44 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: './src/app.ts',
-    devtool: 'inline-source-map',
+    entry: "./src/app.ts",
+    devtool: "inline-source-map",
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+                test: /\.ts$/,
+                use: "ts-loader",
                 exclude: /node_modules/
+            },
+            {
+                test: /\.ts$/,
+                enforce: "pre",
+                use: [
+                    {
+                        loader: 'tslint-loader',
+                        options: {
+                            typeCheck: true
+                        }
+                    }
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: 'file-loader'
             }
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: [".tsx", ".ts", ".js"]
     },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: "bundle.js",
+        path: path.resolve(__dirname, "dist")
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -31,17 +48,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "public/index.html"
         }),
-       new webpack.HotModuleReplacementPlugin(),
-       
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: "./dist",
         hot: true
     },
     mode: "development",
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.js'
+            vue: "vue/dist/vue.js"
         }
     }
 };
