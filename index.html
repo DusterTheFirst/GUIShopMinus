@@ -26,11 +26,7 @@
                 </li>
                 <div v-if="colors.length === 0">Nothing</div>
             </ul>
-            <ul>
-                <li v-for="item of items">
-                    <img v-bind:src="item.image" v-bind:alt="item.name" v-bind:title="item.info">
-                </li>
-            </ul>
+            <img v-for="item of items" v-lazy="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? 'inline' : 'none'}">
         </div>
-    <script type="text/javascript" src="main.cc4ed68b737bb1b23940.js"></script></body>
+    <script type="text/javascript" src="main.21452966770a48b1b47a.js"></script></body>
 </html>
