@@ -18,7 +18,7 @@ let vm = new Vue({
     data: {
         items: items.map(x =>
             ({
-                image: `./images/${x.type}-${x.meta}.png`,
+                image: `./items/${x.type}-${x.meta}.png`,
                 info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
                 name: x.name
             })
