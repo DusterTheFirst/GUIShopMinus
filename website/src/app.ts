@@ -6,21 +6,6 @@ import Vue from "vue";
 import colors from "./colorcodes.json";
 import items from "./items.json";
 
-let icons: { [x: string]: string } = (() => {
-    let context = require.context("./items/", true, /\.png$/);
-
-    let obj: { [x: string]: string } = {};
-
-    context.keys().map(key => obj[key] = context(key) as string);
-
-    return obj;
-})();
-
-/** Get the icon item through webpack */
-function getItemIcon(id: number, meta: number = 0) {
-    return icons[`./${id}-${meta}.png`];
-}
-
 // tslint:disable: no-invalid-this
 
 // Test Vue App
@@ -33,7 +18,7 @@ let vm = new Vue({
     data: {
         items: items.map(x =>
             ({
-                image: getItemIcon(x.type, x.meta),
+                image: `./images/${x.type}-${x.meta}`,
                 info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
                 name: x.name
             })
