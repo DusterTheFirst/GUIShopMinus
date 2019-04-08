@@ -10,14 +10,10 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: "ts-loader",
-                exclude: /node_modules/
-            },
-            {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 enforce: "pre",
                 use: [
+                    { loader: "ts-loader" },
                     {
                         loader: 'tslint-loader',
                         options: {
@@ -33,9 +29,6 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"]
-    },
     output: {
         filename: "[name].[hash].js",
         path: path.resolve(__dirname, "dist")
@@ -48,7 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "public/index.html"
         }),
-        new webpack.HotModuleReplacementPlugin()
+        // new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         contentBase: "./dist",
@@ -58,6 +51,7 @@ module.exports = {
     resolve: {
         alias: {
             vue: "vue/dist/vue.js"
-        }
+        },
+        extensions: ['.tsx', '.ts', '.js']
     }
 };

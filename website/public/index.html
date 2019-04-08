@@ -16,17 +16,16 @@
         <div class="container" id="app" v-cloak>
             <form >
                 <fieldset>
-                    <h1>{{title.length === 0 ? "No Search" : title}}</h1>
-                    <input v-model="title">
+                    <h1>{{search.length === 0 ? "No Search" : search}}</h1>
+                    <input v-model="search">
                 </fieldset>
             </form>
             <ul>
-                <li v-for="color of colors">
-                    <span v-bind:style="{'color': toColor(color.color)}">{{color.name}}</span>
+                <li v-for="color of colors" v-bind:style="{'color': toColor(color.color), 'display': color.show ? null : 'none'}">
+                    {{color.name}}
                 </li>
-                <div v-if="colors.length === 0">Nothing</div>
             </ul>
-            <img v-for="item of items" v-lazy="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? 'inline' : 'none'}">
+            <img v-for="item of items" v-bind:src="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? null : 'none'}">
         </div>
     </body>
 </html>

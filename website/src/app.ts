@@ -6,16 +6,25 @@ import Vue from "vue";
 import VueLazyload from "vue-lazyload";
 import colors from "./colorcodes.json";
 import items from "./items.json";
+import { fuzzySearch, zipObject } from "./util";
+
+const colorsZipped = zipObject<{ color: number; name: string }>(colors);
 
 Vue.use(VueLazyload);
 
-// tslint:disable: no-invalid-this
-
 // Test Vue App
+// tslint:disable: no-invalid-this
 let vm = new Vue({
     computed: {
         colors() {
-            return Object.values(colors).filter(x => x.name.toLowerCase().includes(this.title.toLowerCase()));
+            return colorsZipped.map(color => {
+                return {
+                    color: color.value.color,
+                    colorcode: color.key,
+                    name: color.value.name,
+                    show: fuzzySearch(color.value.name, this.search)
+                };
+            });
         },
         items() {
             return items.map(x =>
@@ -23,13 +32,13 @@ let vm = new Vue({
                     image: `./items/${x.type}-${x.meta}.png`,
                     info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
                     name: x.name,
-                    show: x.name.toLowerCase().includes(this.title.toLowerCase())
+                    show: fuzzySearch(x.name, this.search)
                 })
             );
         }
     },
     data: {
-        title: ""
+        search: ""
     },
     el: "#app",
     methods: {
@@ -45,3 +54,4 @@ let vm = new Vue({
         // tslint:enable: no-bitwise, no-parameter-reassignment
     }
 });
+// tslint:enable: no-invalid-this
