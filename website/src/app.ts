@@ -4,41 +4,63 @@
 
 import Vue from "vue";
 import VueLazyload from "vue-lazyload";
-import colors from "./colorcodes.json";
+import colorcodes from "./colorcodes.json";
 import items from "./items.json";
 import { fuzzySearch, zipObject } from "./util";
 
-const colorsZipped = zipObject<{ color: number; name: string }>(colors);
+const colorsZipped = zipObject<{ color: number; name: string }>(colorcodes).map(x => ({
+    code: x.key,
+    ...x.value
+}));
 
 Vue.use(VueLazyload);
 
-// Test Vue App
+let store = {
+    title: "&8Store &3to &bbeat&4red&8men"
+};
+
 // tslint:disable: no-invalid-this
 let vm = new Vue({
     computed: {
-        colors() {
-            return colorsZipped.map(color => {
-                return {
-                    color: color.value.color,
-                    colorcode: color.key,
-                    name: color.value.name,
-                    show: fuzzySearch(color.value.name, this.search)
-                };
+        coloredTitle() {
+            enum ColorParseState {
+                Normal,
+                Color
+            }
+            let state = ColorParseState.Normal;
+            let colors: { code: string; index: number }[] = [];
+            this.store.title.split("").forEach((char, index) => {
+                // Switch based on state
+                if (state === ColorParseState.Normal) {
+                    // If char is &, enter color parse mode
+                    if (char === "&") {
+                        state = ColorParseState.Color;
+                    }
+                    // Or else continue onward
+                } else {
+                    // Check if the char is a color code
+                    if (colorsZipped.some(x => x.code === char)) {
+                        colors.push({
+                            code: char,
+                            index: index - 1
+                        });
+                    }
+                    // Reset the state to normal
+                    state = ColorParseState.Normal;
+                }
             });
-        },
-        items() {
-            return items.map(x =>
-                ({
-                    image: `./items/${x.type}-${x.meta}.png`,
-                    info: `${x.name} (${x.text_type}): ${x.type}:${x.meta}`,
-                    name: x.name,
-                    show: fuzzySearch(x.name, this.search)
-                })
-            );
+
+            let newtitle = this.store.title.slice();
+            for (let color of colors) {
+                newtitle += this.store.title.substr(0, color.index);
+            }
+
+            return [colors, newtitle];
         }
     },
     data: {
-        search: ""
+        colors: colorsZipped,
+        store
     },
     el: "#app",
     methods: {

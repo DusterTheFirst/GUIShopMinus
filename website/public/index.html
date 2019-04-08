@@ -14,7 +14,16 @@
     </head>
     <body>
         <div class="container" id="app" v-cloak>
-            <form >
+            <form>
+                <fieldset>
+                    <label>Store Title: <span>{{coloredTitle}}</span></label>
+                    <input type="text" v-model="store.title">
+                </fieldset>
+            </form>
+            <div class="colorselector">
+                <div class="color" v-for="color of colors" v-bind:style="{'color': toColor(color.color)}">{{color.name}}</div>
+            </div>
+            <!-- <form >
                 <fieldset>
                     <h1>{{search.length === 0 ? "No Search" : search}}</h1>
                     <input v-model="search">
@@ -25,7 +34,7 @@
                     {{color.name}}
                 </li>
             </ul>
-            <img v-for="item of items" v-bind:src="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? null : 'none'}">
+            <img v-for="item of items" v-bind:src="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? null : 'none'}"> -->
         </div>
     </body>
 </html>
