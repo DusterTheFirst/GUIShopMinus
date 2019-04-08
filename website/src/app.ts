@@ -18,7 +18,7 @@ const colorsZipped = zipObject(colorcodes).map(x => ({
 Vue.use(VueLazyload);
 
 let store = {
-    title: "&8&eStore &3to &bbeat&4red&9&l&n&k&m&m&k&k&k&k&k&k&k&k&kmen"
+    title: "&8&eStore &3to &bbeat &4red &9&l&n&m&k&omen"
 };
 
 let vm = new Vue({
