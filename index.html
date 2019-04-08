@@ -8,24 +8,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
             [v-cloak] {
-                display: none
+                display: none;
             }
         </style>
     </head>
     <body>
         <div class="container" id="app" v-cloak>
-            <form >
+            <form>
                 <fieldset>
-                    <h1>{{search.length === 0 ? "No Search" : search}}</h1>
-                    <input v-model="search">
+                    <label>Store Title: <span v-html="coloredTitle" class="minecraft"></span></label>
+                    <input type="text" v-model="store.title">
                 </fieldset>
             </form>
-            <ul>
-                <li v-for="color of colors" v-bind:style="{'color': toColor(color.color), 'display': color.show ? null : 'none'}">
-                    {{color.name}}
-                </li>
-            </ul>
-            <img v-for="item of items" v-bind:src="item.image" v-bind:alt="item.name" v-bind:title="item.info" v-bind:style="{'display': item.show ? null : 'none'}">
+            <div class="colorselector">
+                <div class="color" v-for="color of colors" v-bind:style="{'color': color.color}">&{{color.code}} - {{color.name}}</div>
+                <!-- TODO: Selectors for styles -->
+            </div>
         </div>
-    <script type="text/javascript" src="main.6080e2e1bc9a2ab5bfb2.js"></script></body>
+    <script type="text/javascript" src="main.9badda67124ec209e038.js"></script></body>
 </html>
