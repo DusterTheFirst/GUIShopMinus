@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Minecraft Regular";
+    src: url("./fonts/minecraft_font_by_pwnage_block-d37t6nb.eot") format("eot"),
+        url("./fonts/minecraft_font_by_pwnage_block-d37t6nb.woff") format("woff"),
+        url("./fonts/minecraft_font_by_pwnage_block-d37t6nb.ttf") format("truetype"),
+        url("./fonts/minecraft_font_by_pwnage_block-d37t6nb.svg") format("svg");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.minecraft {
+    font-family: "Minecraft Regular", monospace;
+}

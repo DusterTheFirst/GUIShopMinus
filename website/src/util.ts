@@ -11,7 +11,7 @@ export function zip<A, B>(arrayA: A[], arrayB: B[]) {
     });
 }
 
-interface IMapObject<V> {
+export interface IMapObject<V> {
     [key: string]: V;
 }
 

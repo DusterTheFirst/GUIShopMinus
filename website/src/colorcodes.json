@@ -1,66 +1,66 @@
 {
     "4": {
         "name": "Dark Red",
-        "color": 11141120
+        "color": "#aa0000"
     },
     "c": {
         "name": "Red",
-        "color": 16733525
+        "color": "#ff5555"
     },
     "6": {
         "name": "Gold",
-        "color": 16755200
+        "color": "#ffaa00"
     },
     "e": {
         "name": "Yellow",
-        "color": 16777045
+        "color": "#ffff55"
     },
     "2": {
         "name": "Dark Green",
-        "color": 43520
+        "color": "#00aa00"
     },
     "a": {
         "name": "Green",
-        "color": 5635925
+        "color": "#55ff55"
     },
     "b": {
         "name": "Aqua",
-        "color": 5636095
+        "color": "#55ffff"
     },
     "3": {
         "name": "Dark Aqua",
-        "color": 43690
+        "color": "#00aaaa"
     },
     "1": {
         "name": "Dark Blue",
-        "color": 170
+        "color": "#0000aa"
     },
     "9": {
         "name": "Blue",
-        "color": 5592575
+        "color": "#5555ff"
     },
     "d": {
         "name": "Light Purple",
-        "color": 16733695
+        "color": "#ff55ff"
     },
     "5": {
         "name": "Dark Purple",
-        "color": 11141290
+        "color": "#aa00aa"
     },
     "f": {
         "name": "White",
-        "color": 16777215
+        "color": "#ffffff"
     },
     "7": {
         "name": "Gray",
-        "color": 11184810
+        "color": "#aaaaaa"
     },
     "8": {
         "name": "Dark Gray",
-        "color": 5592405
+        "color": "#555555"
     },
     "0": {
         "name": "Black",
-        "color": 0
+        "color": "#000000"
     }
 }

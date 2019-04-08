@@ -4,11 +4,13 @@
 
 import Vue from "vue";
 import VueLazyload from "vue-lazyload";
-import colorcodes from "./colorcodes.json";
+import colorcodesraw from "./colorcodes.json";
 import items from "./items.json";
-import { fuzzySearch, zipObject } from "./util";
+import "./styles.scss";
+import { fuzzySearch, IMapObject, zipObject } from "./util";
 
-const colorsZipped = zipObject<{ color: number; name: string }>(colorcodes).map(x => ({
+const colorcodes = colorcodesraw as IMapObject<{ color: string; name: string }>;
+const colorsZipped = zipObject(colorcodes).map(x => ({
     code: x.key,
     ...x.value
 }));
@@ -16,64 +18,62 @@ const colorsZipped = zipObject<{ color: number; name: string }>(colorcodes).map(
 Vue.use(VueLazyload);
 
 let store = {
-    title: "&8Store &3to &bbeat&4red&8men"
+    title: "&8&eStore &3to &bbeat&4red&9&l&n&k&m&m&k&k&k&k&k&k&k&k&kmen"
 };
 
-// tslint:disable: no-invalid-this
 let vm = new Vue({
     computed: {
         coloredTitle() {
-            enum ColorParseState {
-                Normal,
-                Color
-            }
-            let state = ColorParseState.Normal;
-            let colors: { code: string; index: number }[] = [];
-            this.store.title.split("").forEach((char, index) => {
-                // Switch based on state
-                if (state === ColorParseState.Normal) {
-                    // If char is &, enter color parse mode
-                    if (char === "&") {
-                        state = ColorParseState.Color;
-                    }
-                    // Or else continue onward
-                } else {
-                    // Check if the char is a color code
-                    if (colorsZipped.some(x => x.code === char)) {
-                        colors.push({
-                            code: char,
-                            index: index - 1
-                        });
-                    }
-                    // Reset the state to normal
-                    state = ColorParseState.Normal;
+            return this.store.title.replace(/((?:\&[0-9a-flnomkr])+)([^&]*)/g, (_, rawcodes: string, text: string) => {
+                let span = document.createElement("span");
+
+                let codes = rawcodes.replace(/&/g, "").split("");
+
+                // Add bold if there is a bold code
+                if (codes.includes("l")) {
+                    span.style.fontWeight = "bold";
                 }
+                // Add underline and strike if m and n
+                if (codes.includes("n") && codes.includes("m")) {
+                    span.style.textDecoration = "underline line-through";
+                } else {
+                    // Add underline if there is an underline code
+                    if (codes.includes("n")) {
+                        span.style.textDecoration = "underline";
+                    }
+                    // Add a line through if m
+                    if (codes.includes("m")) {
+                        span.style.textDecoration = "line-through";
+                    }
+                }
+                // Add italic if there is an oblique code
+                if (codes.includes("o")) {
+                    span.style.fontStyle = "italic";
+                }
+
+                // NO OBSTUF support
+                // if (codes.includes("k")) {
+                // }
+
+                // No reset support
+                // if (codes.includes("r")) {
+                // }
+
+                // Add the colors, only showing the last one given
+                let color = codes.filter(code => Object.keys(colorcodes).includes(code)).pop();
+                if (color !== undefined) {
+                    span.style.color = colorcodes[color].color;
+                }
+
+                span.innerText = text;
+
+                return span.outerHTML;
             });
-
-            let newtitle = this.store.title.slice();
-            for (let color of colors) {
-                newtitle += this.store.title.substr(0, color.index);
-            }
-
-            return [colors, newtitle];
         }
     },
     data: {
         colors: colorsZipped,
         store
     },
-    el: "#app",
-    methods: {
-        // tslint:disable: no-bitwise no-parameter-reassignment
-        toColor(num: number) {
-            num >>>= 0;
-            let b = num & 0xFF;
-            let g = (num & 0xFF00) >>> 8;
-            let r = (num & 0xFF0000) >>> 16;
-
-            return `rgb(${r},${g},${b})`;
-        }
-        // tslint:enable: no-bitwise, no-parameter-reassignment
-    }
+    el: "#app"
 });
-// tslint:enable: no-invalid-this
