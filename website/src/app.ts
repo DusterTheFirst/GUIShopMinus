@@ -33,7 +33,7 @@ import { fuzzySearch, getItemIcon, IMapObject, parseColorCodesToHTML, zipObject 
         },
         data: {
             colors: colorsZipped,
-            items: items.map(x => getItemIcon(x.type, x.meta)),
+            items: await Promise.all(items.map(async x => getItemIcon(x.type, x.meta))),
             store,
             styles: stylesZipped
         },

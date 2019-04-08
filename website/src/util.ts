@@ -89,17 +89,9 @@ export function parseColorCodesToHTML(stringcolorcodes: string): string {
     });
 }
 
-const icons: { [x: string]: string } = (() => {
-    let context = require.context("./items/", true, /\.png$/);
-
-    let obj: { [x: string]: string } = {};
-
-    context.keys().map(key => obj[key] = context(key) as string);
-
-    return obj;
-})();
-
 /** Get the icon item through webpack */
-export function getItemIcon(id: number, meta: number = 0) {
+export async function getItemIcon(id: number, meta: number = 0) {
+    let { icons } = await import("./icons");
+
     return icons[`./${id}-${meta}.png`];
 }
