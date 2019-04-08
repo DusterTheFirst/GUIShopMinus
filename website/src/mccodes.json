@@ -1,0 +1,94 @@
+{
+    "colors": {
+        "4": {
+            "name": "Dark Red",
+            "color": "#aa0000"
+        },
+        "c": {
+            "name": "Red",
+            "color": "#ff5555"
+        },
+        "6": {
+            "name": "Gold",
+            "color": "#ffaa00"
+        },
+        "e": {
+            "name": "Yellow",
+            "color": "#ffff55"
+        },
+        "2": {
+            "name": "Dark Green",
+            "color": "#00aa00"
+        },
+        "a": {
+            "name": "Green",
+            "color": "#55ff55"
+        },
+        "b": {
+            "name": "Aqua",
+            "color": "#55ffff"
+        },
+        "3": {
+            "name": "Dark Aqua",
+            "color": "#00aaaa"
+        },
+        "1": {
+            "name": "Dark Blue",
+            "color": "#0000aa"
+        },
+        "9": {
+            "name": "Blue",
+            "color": "#5555ff"
+        },
+        "d": {
+            "name": "Light Purple",
+            "color": "#ff55ff"
+        },
+        "5": {
+            "name": "Dark Purple",
+            "color": "#aa00aa"
+        },
+        "f": {
+            "name": "White",
+            "color": "#ffffff"
+        },
+        "7": {
+            "name": "Gray",
+            "color": "#aaaaaa"
+        },
+        "8": {
+            "name": "Dark Gray",
+            "color": "#555555"
+        },
+        "0": {
+            "name": "Black",
+            "color": "#000000"
+        }
+    },
+    "styles": {
+        "l": {
+            "name": "Bold",
+            "css": "font-weight: bold"
+        },
+        "m": {
+            "name": "Strikethrough",
+            "css": "text-decoration: line-through"
+        },
+        "n": {
+            "name": "Underline",
+            "css": "text-decoration: line-under"
+        },
+        "o": {
+            "name": "Italic",
+            "css": "font-style: italic"
+        },
+        "r": {
+            "name": "Reset",
+            "css": null
+        },
+        "k": {
+            "name": "Obfuscated",
+            "css": null
+        }
+    }
+}

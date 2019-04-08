@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>GuiShopMinus</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
             [v-cloak] {
                 display: none;
@@ -13,7 +12,7 @@
         </style>
     </head>
     <body>
-        <div class="container" id="app" v-cloak>
+        <div id="app" v-cloak>
             <form>
                 <fieldset>
                     <label>Store Title: <span v-html="coloredTitle" class="minecraft"></span></label>
@@ -21,9 +20,12 @@
                 </fieldset>
             </form>
             <div class="colorselector">
-                <div class="color" v-for="color of colors" v-bind:style="{'color': color.color}">&{{color.code}} - {{color.name}}</div>
+                <div class="color" v-for="color of colors" v-bind:style="{'color': color.color}">&{{color.code}} -
+                    {{color.name}}</div>
+                <div class="style" v-for="style of styles" v-bind:style="style.css">&{{style.code}} -
+                    {{style.name}}<span v-if="style.css === null" class="importantfootnote" title="This property is not displayed in this editor">*</span></div>
                 <!-- TODO: Selectors for styles -->
             </div>
-        </div>
+            <img v-for="item of items" v-bind:src="item"/>        </div>
     </body>
 </html>

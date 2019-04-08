@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: "./src/app.ts",
-    devtool: "inline-source-map",
     module: {
         rules: [
             {
@@ -15,7 +14,7 @@ module.exports = {
                 use: [
                     { loader: "ts-loader" },
                     {
-                        loader: 'tslint-loader',
+                        loader: "tslint-loader",
                         options: {
                             typeCheck: true
                         }
@@ -24,12 +23,15 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|svg|jpg|gif|eot|ttf|woff)$/,
-                use: 'file-loader'
+                // Load items as data urls in order to speed up download times
+                test: /\.png$/,
+                use: "url-loader",
+                include: /items/
             },
             {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', "sass-loader"]
+                test: /\.(png|svg|jpg|gif|eot|ttf|woff)$/,
+                use: "file-loader",
+                exclude: /items/
             }
         ]
     },
@@ -46,15 +48,10 @@ module.exports = {
             template: "public/index.html"
         })
     ],
-    devServer: {
-        contentBase: "./dist",
-        hot: true
-    },
-    mode: "development",
     resolve: {
         alias: {
             vue: "vue/dist/vue.js"
         },
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: [".tsx", ".ts", ".js"]
     }
 };
