@@ -2,6 +2,8 @@
  * Copyright (C) 2019  Zachary Kohnen
  */
 
+import { IMaterial, IMaterialInfo } from "./app.js";
+import items from "./items.json";
 import mccodes from "./mccodes.json";
 
 export function zip<A, B>(arrayA: A[], arrayB: B[]) {
@@ -89,9 +91,24 @@ export function parseColorCodesToHTML(stringcolorcodes: string): string {
     });
 }
 
-/** Get the icon item through webpack */
-export async function getItemIcon(id: number, meta: number = 0) {
-    let { icons } = await import("./icons");
+export const icons: IMapObject<string> = (() => {
+    let context = require.context("./items/", true, /\.png$/);
 
-    return icons[`./${id}-${meta}.png`];
+    let obj: IMapObject<string> = {};
+
+    context.keys().map(key => obj[key] = context(key) as string);
+
+    return obj;
+})();
+
+/** Get the icon item through webpack */
+export function getItemIcon(material: IMaterial) {
+    return icons[`./${material.type}-${material.meta}.png`];
+}
+
+const itemlist = items as IMaterialInfo[];
+
+/** Get the icon item through webpack */
+export function getItemInfo(material: IMaterial) {
+    return items.find(x => x.type === material.type && x.meta === material.type);
 }

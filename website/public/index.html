@@ -21,19 +21,25 @@
             <fieldset>
                 <label>Store Name:</label>
                 <input type="text" v-model="store.name">
-                <span v-html="coloredTitle" class="minecraft"></span>
+                <span v-html="parseColorCodesToHTML(store.name)" class="minecraft"></span>
             </fieldset>
-            <div class="submenus">
-                <details v-for="submenu of store.submenus">
-                    <summary>{{submenu.icon}} {{submenu.name}}</summary>
-                    {{submenu.description}}
-                    <details v-for="item of submenu.items" style="padding: 2px 10px">
-                        <summary>{{item.amount}}x {{item.material}} {{item.name}}</summary>
-                        Buy: &dollar;{{item.price}}
-                        sell: &dollar;{{item.sellprice}}
+            <fieldset>
+                <div class="submenus">
+                    <details v-for="submenu of store.submenus">
+                        <summary><img v-bind:src="getItemIcon(submenu.icon)" alt="getItemInfo(submenu.icon).name"> <span v-html="parseColorCodesToHTML(submenu.name)" class="minecraft"></span></summary>
+                        <fieldset>
+                            <span v-html="parseColorCodesToHTML(submenu.description)" class="minecraft"></span>
+                            <details v-for="item of submenu.items" style="padding: 2px 10px">
+                                <summary>{{item.amount}}x <img v-bind:src="getItemIcon(item.material)" alt="getItemInfo(item.material).name"> <span v-html="parseColorCodesToHTML(item.name)" class="minecraft"></span></summary>
+                                <fieldset>
+                                    Buy: &dollar;{{item.price}}
+                                    sell: &dollar;{{item.sellprice}}
+                                </fieldset>
+                            </details>
+                        </fieldset>
                     </details>
-                </details>
-            </div>
+                </div>
+            </fieldset>
 
             <button v-on:click="download">Download</button>
             <input type="file" id="fileupload" accept="application/json" hidden v-on:change="uploadfile($event)">
