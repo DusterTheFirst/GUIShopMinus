@@ -8,10 +8,12 @@
     font-weight: normal;
 }
 
-.minecraft {
-    font-family: "Minecraft Regular", monospace;
-}
-
-.importantfootnote {
-    color: red;
+.app {
+    .minecraft {
+        font-family: "Minecraft Regular", monospace;
+    }
+    
+    .importantfootnote {
+        color: red;
+    }
 }
