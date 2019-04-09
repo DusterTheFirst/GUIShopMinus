@@ -10,22 +10,45 @@
                 display: none;
             }
         </style>
+        <meta name="og:determiner " content="the">
+        <meta name="og:title" content="GuiShopMinus">
+        <meta name="og:description " content="🛒 FOSS alternitive to GUIShopPlus with an web config editor">
+        <meta name="og:type" content="website">
+        <meta name="og:url" content="https://whsmc.github.io/GUIShopMinus/">
     <link href="styles.css" rel="stylesheet"></head>
     <body>
         <div id="app" v-cloak>
-            <form>
-                <fieldset>
-                    <label>Store Title: <span v-html="coloredTitle" class="minecraft"></span></label>
-                    <input type="text" v-model="store.title">
-                </fieldset>
-            </form>
+            <fieldset>
+                <label>Store Name:</label>
+                <input type="text" v-model="store.name">
+                <span v-html="coloredTitle" class="minecraft"></span>
+            </fieldset>
+            <div class="submenus">
+                <details v-for="submenu of store.submenus">
+                    <summary>{{submenu.icon}} {{submenu.name}}</summary>
+                    {{submenu.description}}
+                    <details v-for="item of submenu.items" style="padding: 2px 10px">
+                        <summary>{{item.amount}}x {{item.material}} {{item.name}}</summary>
+                        Buy: &dollar;{{item.price}}
+                        sell: &dollar;{{item.sellprice}}
+                    </details>
+                </details>
+            </div>
+
+            <button v-on:click="download">Download</button>
+            <input type="file" id="fileupload" accept="application/json" hidden v-on:change="uploadfile($event)">
+            <button v-on:click="upload">Load from file</button>
+
+
             <div class="colorselector">
                 <div class="color" v-for="color of colors" v-bind:style="{'color': color.color}">&{{color.code}} -
                     {{color.name}}</div>
                 <div class="style" v-for="style of styles" v-bind:style="style.css">&{{style.code}} -
-                    {{style.name}}<span v-if="style.css === null" class="importantfootnote" title="This property is not displayed in this editor">*</span></div>
+                    {{style.name}}<span v-if="style.css === null" class="importantfootnote"
+                        title="This property is not displayed in this editor">*</span></div>
                 <!-- TODO: Selectors for styles -->
             </div>
-            <img v-for="item of items" v-bind:src="item"/>        </div>
-    <script type="text/javascript" src="styles.2c456d7daed3f3dc552c.js"></script><script type="text/javascript" src="vendors~main.2c456d7daed3f3dc552c.js"></script><script type="text/javascript" src="main.2c456d7daed3f3dc552c.js"></script></body>
+            <img v-for="item of items" v-bind:src="item" v-bind:alt="item.name" />
+        </div>
+    <script type="text/javascript" src="styles.fe79df6cfff2593b42b8.js"></script><script type="text/javascript" src="vendors~main.fe79df6cfff2593b42b8.js"></script><script type="text/javascript" src="main.fe79df6cfff2593b42b8.js"></script></body>
 </html>
